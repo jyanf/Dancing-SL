@@ -34,7 +34,9 @@ function Trans.Scale(sprite, scale, anchor)--缩放到指定倍数（自动重�
 	if(not sprite) then return end
 	anchor=anchor or {0,0}
 	local destiny = table.pack(Trans.getPos(sprite, anchor))
-	if(scale[1]==0 or scale[2]==0) then error("不支持缩放到0倍，请换成趋近于0的小数.") end
+	--error("不支持缩放到0倍，请换成趋近于0的小数.")
+	if(scale[1]==0) then scale[1]=0.01 end
+	if(scale[2]==0) then scale[2]=0.01 end
 	sprite.scale.x, sprite.scale.y= scale[1], scale[2]
 	Trans.rePos(sprite, destiny, anchor)
 	return table.unpack(destiny)
